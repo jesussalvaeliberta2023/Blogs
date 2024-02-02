@@ -1,0 +1,19 @@
+body {
+    min-width: 320px;
+    min-height: 240px;
+    background-color: #F4A460;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F4A460), to(#ffffff));
+    margin: 0px auto;
+    padding: 0px auto;
+    font-size: 24px;
+    /* height: 100vh; */
+}
+
+.logo{
+    width: 280px;
+}
+
+.cebeca{
+    background-color: #F4A460;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F4A460), to(#ffffff));
+}
