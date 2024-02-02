@@ -59,6 +59,13 @@ app.get('/login', (req, res) => {
     res.render('pages/login', { req: req });
 });
 
+// Rota para a página de publicação
+app.get('/cadastrar_posts', (req, res) => {
+    // Quando for renderizar páginas pelo EJS, passe parametros para ele em forma de JSON
+    res.render('pages/cadastrar_posts', { req: req });
+});
+
+// Rota para a página de about
 app.get('/about', (req, res) => {
     res.render('pages/about', { req: req })
 });
@@ -79,6 +86,27 @@ app.post('/login', (req, res) => {
         } else {
             // res.send('Credenciais incorretas. <a href="/">Tente novamente</a>');
             res.redirect('/login_failed');
+        }
+    });
+});
+
+// Rota para processar o formulário de postagem
+app.post('/cadastrar_posts', (req, res) => {
+    const { titulo, conteudo } = req.body;
+
+    const query = 'INSERT INTO posts (titulo, conteudo) VALUES (?, ?)';
+
+    // const query = 'SELECT * FROM users WHERE username = ? AND password = SHA1(?)';
+
+    db.query(query, [titulo, conteudo], (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            console.log('Legal')
+            res.redirect('/dashboard');
+        } else {
+            // res.send('Credenciais incorretas. <a href="/">Tente novamente</a>');
+            res.send('Cadastro de errado');
         }
     });
 });
